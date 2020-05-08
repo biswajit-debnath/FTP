@@ -9,7 +9,7 @@ from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifie
 
 
 State_list=['Manipur','Mizoram','Sikkim','Nagaland','Meghalaya','Assam','Tripura','Arunachal']
-State_list_S=['Mizoram','Sikkim','Nagaland','Meghalaya','Assam']
+State_list_S=['Mizoram','Sikkim','Nagaland','Meghalaya','Assam','Tripura','Arunachal']
 State_list_S_Nassam= ['Mizoram','Sikkim','Nagaland','Meghalaya','Tripura','Arunachal']
 df_list={}  #datafrmae list
 
