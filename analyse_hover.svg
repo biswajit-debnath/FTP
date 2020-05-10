@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="193" height="83" viewBox="0 0 193 83">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="193" height="83" rx="25" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="analyse_hover" data-name="analyse hover" clip-path="url(#clip-path)">
+    <path id="Path_1" data-name="Path 1" d="M898.889,654.842c-34.9-13.677-21.462-59.129-7.783-59.828s16.214,15.946,28.537,19.089,8.726-26.539,25.707-27,16.981,28.983,30.188,23.745,7.075-45.395,25.471-43.067,23.761,32.3,36.084,31.66,16.45-43.474,27.122-46.093,0,74.96,0,74.96,20.2,20.311-27.122,26.538S933.794,668.519,898.889,654.842Z" transform="translate(-873.741 -542.782)" fill="#1e4432" opacity="0.49"/>
+  </g>
+</svg>
