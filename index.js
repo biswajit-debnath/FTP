@@ -3,7 +3,7 @@ const app = express();
 const NodeCache = require( "node-cache" );
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const db_data = require("./Database/count_data");
+const db_data = require("./Database/data_records");
 
 
 const myCache = new NodeCache();
@@ -12,16 +12,6 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
-// confirmed
-// recovered
-// deaths
-// total
-
-//pass db  SAY6yEBz.iQf.C7
-//mongodb+srv://AssamCoronaAdmin:<password>@cluster0-yxm6w.mongodb.net/test?retryWrites=true&w=majority 
-
 
 
 
@@ -40,8 +30,10 @@ mongoose.connect(
 app.get("/api/getData/:state",async (req,res)=>{
 
 	let state = req.params.state;
-	total = myCache.get( state );
-	if ( total == undefined ){
+	if(state == null) res.json({state:404,error:"No such state found"})
+
+	state = myCache.get( state );
+	if ( state == undefined ){
 		//If cache miss return the data from db
 		// let name = await db_data.findOne({}, {sort:{$natural:-1}});
     	res.json({status:400,error:"No data found"});
@@ -65,14 +57,11 @@ app.post("/api/postData",async (req,res)=>{
 		confirmed=parseInt(confirmed);
 		recovered=parseInt(recovered);
 		deaths=parseInt(deaths);
-//res.json({data:confirmed});
 
 		let reqDataRecord= { confirmed:confirmed, recovered:recovered, deaths:deaths , total:confirmed+recovered+deaths}
 
 		//Storing in cache
 		cache_store_success = myCache.set( state , reqDataRecord);
-		// recovered_success = myCache.set( "recovered", recovered + current_cache_data.recovered);
-		// deaths_success = myCache.set( "deaths", deaths + current_cache_data.deaths);
 
 
 		//Checking if data is stored in cached
@@ -97,7 +86,7 @@ app.post("/api/postData",async (req,res)=>{
 	    }
 	}
 	else {
-		res.json({status:400,err:"No data posted"})
+		res.json({status:400,error:"No data posted"})
 	}
 
 });
