@@ -253,34 +253,178 @@ let width = window.innerWidth;
 
 
 
+function init_small_circle(){
+		//Crime Circles
+
+	 fill_var =0;
+	 animate_sec=2500;
+		// Smallest circle
+		 lower_depth1=30;//30
+
+		 delta_x_txt=27; //+ to rigth - to left
+		 delta_y_txt=9;  //+to down -to up
+
+
+		 crime_circle1_x = width/2+(rad1*0.15*Math.sin(0.698132));  
+		 crime_circle1_y = lower_depth1+height/1.2+(rad1*0.15*Math.cos(0.698132)); 
+
+
+		 circle_text_id1_y=crime_circle1_y+delta_y_txt;
+		 circle_text1_y=crime_circle1_y+delta_y_txt+23;
+
+		 crime_circle1 = paper.circle(crime_circle1_x,crime_circle1_y,16).attr({ 
+			fill: "#DC67C9", 
+			stroke: "#fff",
+			"stroke-opacity":0, 
+			'fill-opacity':fill_var 
+		});
+
+		
+		 circle_text_id1 = paper.text( crime_circle1_x+delta_x_txt,circle_text_id1_y, "#4" ).attr({ 'font-size': 15,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#FFD6F8",'fill-opacity':fill_var });
+
+
+		 circle_text1 = paper.text( crime_circle1_x+23+delta_x_txt,circle_text1_y, "Robery" ).attr({ 'font-size': 18,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#FFD6F8",'fill-opacity':fill_var});
+
+
+
+
+
+
+		//2nd Smallest circle
+		 lower_depth2=190; //160
+
+		 delta_x_txt2=-55; //+ to rigth - to left
+		 delta_y_txt2=-56;  //+to down -to up
+
+		 crime_circle2_x = width/2+(rad1*0.4*Math.sin(2.26893));
+		 crime_circle2_y = lower_depth2+height/1.2+(rad1*0.4*Math.cos(2.26893));
+
+
+		 circle_text_id2_y=crime_circle2_y+delta_y_txt2;
+		 circle_text2_y=crime_circle2_y+delta_y_txt2+23;
+
+		 crime_circle2 = paper.circle(crime_circle2_x,crime_circle2_y,20).attr({ 
+			fill: "#DC9A67", 
+			stroke: "#fff",
+			'fill-opacity':fill_var,
+			"stroke-opacity":0
+		});
+
+		
+		 circle_text_id2 = paper.text( crime_circle2_x+delta_x_txt2,circle_text_id2_y, "#3" ).attr({ 'font-size': 15,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#FFE8D6",'fill-opacity':fill_var});
+
+
+		 circle_text2 = paper.text( crime_circle2_x+39+delta_x_txt2,circle_text2_y, "Kidnapping" ).attr({ 'font-size': 18,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#FFE8D6",'fill-opacity':fill_var});
+
+
+
+
+		//3nd Smallest circle
+		 lower_depth3=70; //70
+		
+		 delta_x_txt3=39; //+ to rigth - to left
+		 delta_y_txt3=-54;  //+to down -to up
+		
+		 crime_circle3_x = width/2-(rad1*0.7*Math.sin(1.5708));
+		 crime_circle3_y = lower_depth3+height/1.2+(rad1*0.7*Math.cos(1.5708));
+
+
+		 circle_text_id3_y=crime_circle3_y+delta_y_txt3;
+		 circle_text3_y=crime_circle3_y+delta_y_txt3+23;
+
+
+		 crime_circle3 = paper.circle(crime_circle3_x,crime_circle3_y,30).attr({ 
+			fill: "#DC6767", 
+			stroke: "#fff",
+			'fill-opacity':fill_var,
+			"stroke-opacity":0
+		});
+
+		
+		 circle_text_id3 = paper.text( crime_circle3_x+delta_x_txt3,circle_text_id3_y, "#2" ).attr({ 'font-size': 15,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#FBCACA",'fill-opacity':fill_var});
+
+
+		 circle_text3 = paper.text( crime_circle3_x+23+delta_x_txt3,circle_text3_y, "Murder" ).attr({ 'font-size': 18,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#FBCACA",'fill-opacity':fill_var});
+
+
+
+
+		//Big circle
+		 lower_depth4=420;
+
+		 delta_x_txt4=54; //+ to rigth - to left
+		 delta_y_txt4=-25;  //+to down -to up
+
+
+		 crime_circle4_x = width/2+(rad1*Math.sin(2.53073));
+		 crime_circle4_y = lower_depth4+height/1.2+(rad1*Math.cos(2.53073));
+
+
+
+		 circle_text_id4_y=crime_circle4_y+delta_y_txt4;
+		 circle_text4_y=crime_circle4_y+delta_y_txt4+23;
+
+
+		 crime_circle4 = paper.circle(crime_circle4_x,crime_circle4_y,40).attr({ 
+			fill: "#67DCAD", 
+			stroke: "#fff",
+			'fill-opacity':fill_var,
+			"stroke-opacity":0
+		});
+
+		
+		 circle_text_id4 = paper.text( crime_circle4_x+delta_x_txt4,circle_text_id4_y, "#1" ).attr({ 'font-size': 15,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#D0FBEA",'fill-opacity':fill_var});
+
+
+		 circle_text4 = paper.text( crime_circle4_x+14+delta_x_txt4,circle_text4_y, "Rape" ).attr({ 'font-size': 18,'font': "Arial, Helvetica, sans-serif",'font-weight': 'bold', fill:"#D0FBEA",'fill-opacity':fill_var});
+
+}
+
 
 
 
 //Title animation
 
+function home_title_init(){
 
-setTimeout(()=>{
+	setTimeout(()=>{
 
-	$(".title_author_txt").addClass("title_author_txt_slided");
-	$(".title_txt").addClass("title_txt_slided");
-
-
-
+		$(".title_author_txt").addClass("title_author_txt_slided");
+		$(".title_txt").addClass("title_txt_slided");
 
 
-	$(".svg_ln").addClass("line_animate");
 
 
-	$(".title_line").addClass("title_line_animate");
-},1000);
+
+		$(".svg_ln").addClass("line_animate");
 
 
-//Arrow animation
-setTimeout(()=>{
-	$(".arrow_container").addClass("arrow_container_slided");
-},4600);
+		$(".title_line").addClass("title_line_animate");
+	},1000);
 
 
+	//Arrow animation
+	setTimeout(()=>{
+		$(".arrow_container").addClass("arrow_container_slided");
+	},4600);
+}
+function home_title_init_del(){
+
+
+		$(".title_author_txt").removeClass("title_author_txt_slided");
+		$(".title_txt").removeClass("title_txt_slided");
+
+
+
+
+
+		$(".svg_ln").removeClass("line_animate");
+
+
+		$(".title_line").removeClass("title_line_animate");
+
+}
+home_title_init();
 
 
 
@@ -418,12 +562,38 @@ function OverlaymenuClickHandler(){
   		$(".assam_title").addClass("assam_title_slided");
   		$(".assam_count_container").addClass("assam_count_container_slided");
   	},2000);
+  	setTimeout(function(){
+    $("#odometer2").hide();
+    $("#odometer3").hide();
+    odometer.innerHTML = 346;
+
+    // odometer2.innerHTML='';
+    // odometer3.innerHTML='';
+	}, 4200);
+
+
+	//Small circle came to init pos
+	// init_small_circle();
+
+	//Home title init
+	// home_title_init_del()
 
  }
 
  function downSlider(){
  	$(".assam").removeClass("assam_slided-up");
   	$(".home").removeClass("home_slided-up");
+
+  	$(".assam_title").removeClass("assam_title_slided");
+  	$(".assam_count_container").removeClass("assam_count_container_slided");
+  	odometer.innerHTML = 0;
+  	$("#odometer2").show();
+    $("#odometer3").show();
+
+    // setTimeout(animateball1,200);
+    // setTimeout(animateball2, 3200);
+    //Home title init
+	// home_title_init()
  }
 
 
@@ -552,7 +722,7 @@ function OverlaymenuClickHandler(){
 
 
  	$(".assam").removeClass("assam_slided-up");
- 	$(".assam").removeClass("home_slided-left");
+ 	$(".assam").removeClass("home_slided-leftN");
  	$(".assam").removeClass("current_page_slided-right");
 
 
@@ -566,3 +736,13 @@ function OverlaymenuClickHandler(){
 
 
  }
+
+
+
+
+
+
+
+
+
+ //Ododmeter 

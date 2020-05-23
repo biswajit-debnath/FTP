@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+
+<!--   Odometer css -->
+  <link rel="stylesheet" href="odometer-theme-default.css" />
+
   <link rel="stylesheet" href="style.css">
 
 </head>
@@ -333,7 +337,12 @@
 					<p class="assam_name_crime">Rape in 2009</p>
 				</div>
 				<div class="assam_count_container d-flex justify-content-center">
-					<div class="assam_count count1">
+
+
+					<div id="odometer" class="odometer">0</div>
+					<div id="odometer2" class="odometer">0</div>	
+					<div id="odometer3" class="odometer">0</div>				
+					<!-- <div class="assam_count count1">
 						<div class="count1_1 count_1">0</div>
 						<div class="count1_2 count_2">1</div>
 						<div class="count1_3 count_3">2</div>
@@ -350,7 +359,8 @@
 						<div class="count3_2 count_2">1</div>
 						<div class="count3_3 count_3">2</div>
 						<div class="count3_4 count_4">3</div>
-					</div>
+					</div> -->
+
 
 <!-- 					<div class="assam_count count2 d-inline-block">0</div>
 					<div class="assam_count count3 d-inline-block">0</div> -->
@@ -936,7 +946,8 @@
 	
 
 	<script src="jquery.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script> 	
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
+	<script type="text/javascript" src="odometer.js"></script> 	
 	<script src="main.js"></script>
 </body>
 </html>
