@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Flask App</title>
+ <!-- Bootstrap css files -->
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-grid.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+
+</head>
+<body>
+     <div class="container d-flex justify-content-center con">
+          <div class="Mycard">
+               <div id="sucess" class="alert alert-success" role="alert">
+                  This is a success alert—check it out!
+               </div>
+               <div id="failed" class="alert alert-danger" role="alert">
+                  This is a danger alert—check it out!
+               </div>
+               <form>
+                 <div class="form-group">
+                   <label for="name">Name</label>
+                   <input type="text" class="form-control" id="name" placeholder="Name">
+                 </div>
+                 <!-- Group of material radios - option 1 -->
+                  <div class="form-check mt-2 mb-2">
+                    <input type="radio" class="form-check-input radio" id="Individual" name="groupOfMaterialRadios" value="Individual" onclick="document.getElementById('crime').disabled = false;document.getElementById('state').disabled = false;" checked>
+                    <label class="form-check-label" for="Individual">Individual Crime Category Wise Analysis</label>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="crime">Select Crime:</label>
+                    <select id="crime" class="form-control">
+                      <option value=" selected disabled">Select</option>
+                      <option value="RAPE">Rape</option>
+                      <option value="MURDER">Murder</option>
+                      <option value="KIDNAPPING & ABDUCTION">Kidnapping</option>
+                      <option value="ROBBERY">Robbery</option>
+                      <option value="THEFT">Theft</option>
+                      <option value="BURGLARY">Burglary</option>
+                    </select>
+                  </div>
+
+                  <!-- Group of material radios - option 2 -->
+                  <div class="form-check mb-2">
+                    <input type="radio" class="form-check-input radio" id="Entire" name="groupOfMaterialRadios" value="Entire" onclick="document.getElementById('crime').disabled = true;document.getElementById('state').disabled = false;">
+                    <label class="form-check-label" for="Entire">Entire Crime Category Wise Analysis</label>
+                  </div>
+
+                  <div class="form-check mb-2">
+                    <input type="radio" class="form-check-input radio" id="Entire_NE" name="groupOfMaterialRadios" value="Entire_NE" onclick="document.getElementById('crime').disabled = true;document.getElementById('state').disabled = true;">
+                    <label class="form-check-label" for="Entire_NE">Entire Norteast region Analysis</label>
+                  </div>
+                   <div class="form-group">
+                    <label for="state">Select State:</label>
+                    <select id="state" class="form-control">
+                      <option value="selected disabled">Select</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Meghalaya">Meghalaya</option> 
+                      <option value="Tripura">Tripura</option>
+                      <option value="Arunachal">Arunachal</option>
+                    </select>
+                  </div> 
+                 <button type="submit" class="btn btn-primary">Analize</button>
+               </form>
+             </div>
+           </div>
+
+
+        <div class="container d-flex justify-content-center n_margin">
+          <div class="Mycard">
+               <div id="list">
+                 <h2 class="mt-5">State</h2>
+                 <p class="lsit_p">Crime rate w.r.t districts</p>
+                 <div class="row d-flex justify-content-between">
+                   <div class="card col d-flex">
+                     <div class="card-header">Very High</div>
+                     <div class="card-body">
+                       <ul id="V_High">
+                       </ul>
+                     </div>
+                   </div>
+
+                   <div class="card col">
+                     <div class="card-header">High</div>
+                     <div class="card-body">
+                       <ul id="High">
+                       </ul>
+                     </div>
+                   </div>
+
+                   <div class="card col">
+                     <div class="card-header">Low</div>
+                     <div class="card-body">
+                       <ul id="Low">
+                       </ul>
+                     </div>
+                   </div>
+
+                   <div class="card col">
+                     <div class="card-header">Very Low</div>
+                     <div class="card-body">
+                       <ul id="V_Low">
+                    
+                       </ul>
+                     </div>
+                   </div>
+
+                 </div>
+               </div>
+          </div>
+     </div>
+     
+     
+
+    <div class="container bar_plot mt-3">
+      <div id="chartContainer" style="height: 450px; width: 100%;"></div>
+    </div>
+
+
+
+     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+     <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+     <script src="{{ url_for('static',filename='js/bootstrap.bundle.js') }}"></script>
+     <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+     <script src="{{ url_for('static',filename='js/frontend.js') }}"></script>     
+</body>
+</html>
