@@ -270,6 +270,7 @@ input:checked + .slider:before {
   margin-left: 1rem;
   margin-bottom: 1rem;
 }
+
 hr {
   margin: 0;
 }
@@ -315,9 +316,7 @@ hr {
 
 
 
-.bar_plot {
-  position: relative;
-}
+
 
 /*Loading*/
 .loading_container {
@@ -338,6 +337,7 @@ hr {
 .loading_img {
   width:4rem;
 }
+/*Loading end*/
 
 
 
@@ -346,10 +346,21 @@ hr {
 
 
 
+/*Bar plots*/
+.bar_plot {
+  position: relative;
+}
+
+.loading_container_bar_plot { transition: all 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1.9rem;
+ 
+}
 
 
-
-
+/*Bar plots end*/
 
 
 

@@ -12,6 +12,9 @@ let NE_selected = false;
 
 $(".analyse_form_btn").on('click',function(e){
 	e.preventDefault();
+	document.querySelector(".analyz_content").style.display = "none";
+	$( ".cluster_ul" ).empty();
+	$('.bar_plot').hide();
 	//Displaying the loading container while data is arriving from the backend
 	$('.loading_container').show();
 	//Checking which one of the selction is selected
@@ -129,7 +132,13 @@ const Create_li=(data,cluster)=>{
 //Year wise analysis
 	$('.clusters').on('click', function(ev){
 	  if(ev.target.tagName == 'BUTTON'){
-		$('.bar_plot').show();
+	  	$('.loading_container_bar_plot').show();
+	  	$('.bar_plot').hide();
+		
+		//Auto scrool to bar_plot
+						$('html, body').animate({
+					         scrollTop: $(".bar_plot_block").offset().top
+					     }, 700);
 
 		console.log("clicked");
 		total_data=[];
@@ -151,6 +160,9 @@ const Create_li=(data,cluster)=>{
 				url : `${host}/backend/Entire/year`
 			})
 			.done(function(data){
+	  			$('.loading_container_bar_plot').hide();
+
+				$('.bar_plot').show();
 				top_crime = data["top_crime_list"]["top"];
 				second_top_crime = data["top_crime_list"]["Second_top"]; 
 				total_obj= data["total"];
@@ -204,6 +216,8 @@ const Create_li=(data,cluster)=>{
 				url : `${host}/backend/Entire_NE/year`
 			})
 			.done(function(data){
+	  			$('.loading_container_bar_plot').hide();
+				$('.bar_plot').show();
 				top_crime = data["top_crime_list"]["top"];
 				second_top_crime = data["top_crime_list"]["Second_top"]; 
 				total_obj= data["total"];
