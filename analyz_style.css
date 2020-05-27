@@ -5,6 +5,27 @@ body {
 /*  background: url("visualization.jpg") repeat-y center / cover;*/
 }
 
+/*alert*/
+.alert {
+  transition: all 1s ease;
+  margin: auto;
+  margin-top: -1rem;
+  width:30%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+} 
+strong.err{
+  margin-right: 1rem!important;
+}
+button.close {
+  padding-top: 0.25rem!important;
+}
+/*alert end*/
+
+
 /*Analyz PAge*/
 .analyz_form select:focus {
     outline:none;

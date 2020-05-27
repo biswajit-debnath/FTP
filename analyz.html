@@ -23,7 +23,7 @@
 
 </head>
 
-<body style="display: none;">
+<body>
 
   <!-- Analyz Page  -->
 
@@ -46,10 +46,15 @@
         
 
         <!-- Body -->
-        
+        <div class="alert alert-danger alert-dismissible fade " role="alert">
+        <strong class="err">Error!</strong><span class="alert_text"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
         <div class="analyz_body">
           <div class="analyz_container">
-            <div class="analyz_container_title">
+            <div id="analyz_container_title" class="analyz_container_title">
               <div class="analyz_title_overlay">
                 <p>Analyse</p>
                 <p>State</p>
@@ -303,5 +308,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.js" integrity="sha256-Mrt8uZuy/7W0bv7thFokEzbrJ8yVm+mGXG4XYp3DbjM=" crossorigin="anonymous"></script>
   <script src="analyz_main.js"></script>
+
 </body>
 </html>

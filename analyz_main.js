@@ -8,77 +8,134 @@ const Url_for_diff_selection = { "NE_Total":`${host}/backend/Entire_NE`,
 let current_url;
 let api_data = {};
 let NE_selected = false;
-$(window).on("load", function() {
-	$("body").show();
+let err_ocuured=false;
+
+// function getBgUrl(el) {
+//     var bg = "";
+//     if (el.currentStyle) { // IE
+//         bg = el.currentStyle.backgroundImage;
+//     } else if (document.defaultView && document.defaultView.getComputedStyle) { // Firefox
+//         bg = document.defaultView.getComputedStyle(el, "").backgroundImage;
+//     } else { // try and get inline style
+//         bg = el.style.backgroundImage;
+//     }
+//     return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
+// }
+
+// var image = document.createElement('img');
+// image.src = getBgUrl(document.getElementById('.analyz_container_title'));
+// image.onload = function () {
+//     $("body").show();
+// };
+
+
+
 
 $(".analyse_form_btn").on('click',function(e){
+	err_ocuured=false;
+	$(".alert").removeClass("show");
 	e.preventDefault();
 	document.querySelector(".analyz_content").style.display = "none";
 	$( ".cluster_ul" ).empty();
 	$('.bar_plot').hide();
-	//Displaying the loading container while data is arriving from the backend
-	$('.loading_container').show();
+
 	//Checking which one of the selction is selected
 	const selection = $('.checkbox:checked').val();
-	
-	
-	//Selecting the api_url based on selction value
-	Object.entries(Url_for_diff_selection).forEach(([key, value]) => {
-	 if(selection == key ){
-		 if(key == "State_Single"){
-		 	NE_selected = false;
-		 	current_url=value;
-		 	let selected_state= $("#State_Single_State").val();
-		 	let selected_crime= $("#State_Single_Crime").val();
-		 	api_data={};
-		 	api_data={state:selected_state, crime:selected_crime};
+	//If non selected show err
+	if(!selection){
+		$(".alert").addClass("show");
+		$(".alert_text").text("Please choose a option");
+	}
+	else{
+		//Displaying the loading container while data is arriving from the backend
+		$('.loading_container').show();
+
+
+		//Selecting the api_url based on selction value
+		Object.entries(Url_for_diff_selection).forEach(([key, value]) => {
+		 if(selection == key ){
+			 if(key == "State_Single"){
+			 	NE_selected = false;
+			 	current_url=value;
+			 	let selected_state= $("#State_Single_State").val();
+			 	let selected_crime= $("#State_Single_Crime").val();
+			 	//if state or crime is not selected
+			 	if(selected_state == "selected disabled" || selected_crime == "selected disabled") {
+			 		$('.loading_container').hide();
+			 		$(".alert").addClass("show");
+			 		$(".alert_text").text("Please select both state and crime");
+			 		err_ocuured=true;
+			 	}
+			 	api_data={};
+			 	api_data={state:selected_state, crime:selected_crime};
+			 }
+			 else if(key == "State_Total"){
+			 	NE_selected = false;
+			 	current_url=value;
+			 	let selected_state= $("#State_Total").val();
+			 	if(selected_state == "selected disabled") {
+			 		$('.loading_container').hide();
+			 		$(".alert").addClass("show");
+			 		$(".alert_text").text("Please select a state ");
+			 		err_ocuured=true;
+			 	}
+			 	api_data={};
+			 	api_data={state:selected_state};
+			 } 
+			 else if(key == "NE_Single"){
+			 	NE_selected = true;
+			 	current_url=value;
+			 	let selected_crime= $("#NE_Single_Crime").val();
+			 	if(selected_crime == "selected disabled") {
+			 		$('.loading_container').hide();
+			 		$(".alert").addClass("show");
+			 		$(".alert_text").text("Please select a crime");
+			 		err_ocuured=true;
+			 	}
+			 	api_data={};
+			 	api_data={crime:selected_crime};
+			 } 
+			 else {
+			 	NE_selected = true;
+			 	current_url=value;
+			 	api_data={};
+			 }
 		 }
-		 else if(key == "State_Total"){
-		 	NE_selected = false;
-		 	current_url=value;
-		 	let selected_state= $("#State_Total").val();
-		 	api_data={};
-		 	api_data={state:selected_state};
-		 } 
-		 else if(key == "NE_Single"){
-		 	NE_selected = true;
-		 	current_url=value;
-		 	let selected_crime= $("#NE_Single_Crime").val();
-		 	api_data={};
-		 	api_data={crime:selected_crime};
-		 } 
-		 else {
-		 	NE_selected = true;
-		 	current_url=value;
-		 	api_data={};
-		 }
-	 }
 
-	});
+		});
 
 
 
 
-	//Calling the api with selected url and along with the data 
-	$.ajax({
-				data : {...api_data,name:"Biswajit"},
-						type : 'POST',
-						url : current_url
-					})
-					.done(function(data){
-						document.querySelector(".analyz_content").style.display = "block";
-						//Hiding the loading container
-						$('.loading_container').hide();
+		if(!err_ocuured){
+		//Calling the api with selected url and along with the data 
+		$.ajax({
+					data : {...api_data,name:"Biswajit"},
+							type : 'POST',
+							url : current_url
+						})
+						.done(function(data){
+							document.querySelector(".analyz_content").style.display = "block";
+							//Hiding the loading container
+							$('.loading_container').hide();
 
-						//Auto scrool to analyz_content
-						$('html, body').animate({
-					         scrollTop: $(".analyz_content").offset().top
-					     }, 1000);
-						create_insert_elements(data);
-					})
+							//Auto scrool to analyz_content
+							$('html, body').animate({
+						         scrollTop: $(".analyz_content").offset().top
+						     }, 1000);
+							create_insert_elements(data);
+						});
+		}
+  	}
+
+});	
 
 
-});
+	
+
+
+
+
 
 	
 
@@ -334,4 +391,3 @@ function bar_plot(total_obj,top_obj,second_obj,top_crime,second_top_crime,distri
 
 
 
-});
