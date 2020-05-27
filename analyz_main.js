@@ -1,29 +1,137 @@
-const cluster_index_name = ['V_High', 'High','Low','V_Low'];
+const host = "http://3.21.34.165:8082/";
+
+const Url_for_diff_selection = { "NE_Total":`${host}/backend/Entire_NE`,
+							  "State_Total":`${host}/backend/Entire`,
+							 "State_Single":`${host}/backend/Individual`,
+							 	"NE_Single":`${host}/backend/Entire_NE/Individual` };
+
+let current_url;
+let api_data = {};
+let NE_selected = false;
 
 
-// const selection= $('.radio:checked').val();
-// if(selection === "Entire") {
-// 	$('#crime').disabled = true;
-// }
+$(".analyse_form_btn").on('click',function(e){
+	e.preventDefault();
+	//Checking which one of the selction is selected
+	const selection = $('.checkbox:checked').val();
+	
+	
+	//Selecting the api_url based on selction value
+	Object.entries(Url_for_diff_selection).forEach(([key, value]) => {
+	 if(selection == key ){
+		 if(key == "State_Single"){
+		 	NE_selected = false;
+		 	current_url=value;
+		 	let selected_state= $("#State_Single_State").val();
+		 	let selected_crime= $("#State_Single_Crime").val();
+		 	api_data={};
+		 	api_data={state:selected_state, crime:selected_crime};
+		 }
+		 else if(key == "State_Total"){
+		 	NE_selected = false;
+		 	current_url=value;
+		 	let selected_state= $("#State_Total").val();
+		 	api_data={};
+		 	api_data={state:selected_state};
+		 } 
+		 else if(key == "NE_Single"){
+		 	NE_selected = true;
+		 	current_url=value;
+		 	let selected_crime= $("#NE_Single_Crime").val();
+		 	api_data={};
+		 	api_data={crime:selected_crime};
+		 } 
+		 else {
+		 	NE_selected = true;
+		 	current_url=value;
+		 	api_data={};
+		 }
+	 }
 
-$(document).ready(function(){
-	let State_selected=null;
-	let selection= null;
+	});
 
 
-	//Year wise analysis
-	$('#list').on('click', function(ev){
+
+
+	//Calling the api with selected url and along with the data 
+	$.ajax({
+				data : {...api_data,name:"Biswajit"},
+						type : 'POST',
+						url : current_url
+					})
+					.done(function(data){
+						document.querySelector(".analyz_content").style.display = "block";
+						create_insert_elements(data);
+					})
+
+
+});
+
+	
+
+
+
+
+const  create_insert_elements = data =>{
+
+	//Iterating through the data obj fron the backend
+	Object.entries(data).forEach(([key, value]) => {
+		const li = Create_li(key,value);
+		
+		$(`.${value}`).append(li); //Selecting the parent ul based on cuurent cluster value
+		
+	});
+};
+
+
+const Create_li=(data,cluster)=>{
+	let changed_data=data.toLowerCase();
+	//Removing the _ and replacing with space
+	let data_temp= changed_data.split("_");
+	if(data_temp[1]) changed_data=data_temp[0]+" "+data_temp[1];
+
+	return $(`<li class="collapse_list_item d-flex justify-content-lg-between mb-1 mt-1">
+                              <p class="text-capitalize">${changed_data}</p>
+                              <button class="btn btn-sm btn-warning" id="${data}">Analyse</button>
+                            </li>
+                            <hr>`);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Barplot functionalities
+//Year wise analysis
+	$('.clusters').on('click', function(ev){
+	  if(ev.target.tagName == 'BUTTON'){
 		$('.bar_plot').show();
 
-
+		console.log("clicked");
 		total_data=[];
-		top_data=[];
+		top_data=[]; 
 		second_top_data=[];
+		let State_selected = api_data["state"]; 
 		
 
-		if(selection != "Entire_NE"){
+		if(!NE_selected){
 
-			target_district = ev.target.parentNode.className;
+			target_district = ev.target.id;
 			// console.log('dist',target_district)
 			$.ajax({
 				data : {
@@ -31,7 +139,7 @@ $(document).ready(function(){
 					state : State_selected
 				},
 				type : 'POST',
-				url : '/backend/Entire/year'
+				url : `${host}/backend/Entire/year`
 			})
 			.done(function(data){
 				top_crime = data["top_crime_list"]["top"];
@@ -72,7 +180,9 @@ $(document).ready(function(){
 
 			
 			// console.log('dist',target_district)
-			State_selected = ev.target.parentNode.className;
+			State_selected = ev.target.id;
+			//Making data state data to be recognized by backend ie ASSAM to Assam
+			if(State_selected == "ARUNACHAL_PRADESH") State_selected=ARUNACHAL;
 			State_selected = State_selected.toLowerCase();
 			First_letter= State_selected.charAt(0).toUpperCase();
 			substring = State_selected.substring(1);
@@ -82,7 +192,7 @@ $(document).ready(function(){
 					state : State_selected
 				},
 				type : 'POST',
-				url : '/backend/Entire_NE/year'
+				url : `${host}/backend/Entire_NE/year`
 			})
 			.done(function(data){
 				top_crime = data["top_crime_list"]["top"];
@@ -118,158 +228,15 @@ $(document).ready(function(){
 
 			});
 		}
+	  }
 	});
 
-	// total_obj=[
-	//       { y: 243, label: "2001" },
- //          { y: 236, label:  "2002"},
- //          { y: 243, label:  "2003"},
- //          { y: 273, label:  "2004"},
- //          { y: 269, label:  "2005"},
- //          { y: 196, label:  "2006"},
- //          { y: 1118, label:  "2007"},
- //          { y: 1118, label:  "2008"},
- //          { y: 1118, label:  "2009"},
- //          { y: 1118, label:  "2010"},
- //          { y: 1118, label:  "2011"},
- //          { y: 1118, label:  "2012"}
- //        ];
-
-    
-	
-	// $( ".alert" ).delay( 800 ).fadeIn( 400 );
-	// $('.alert').delay(9000).show();
-
-	//Ajax request for entire crime category for a selected state
-	$('form').on('submit', function(ev){
-		State_selected=$('#state').val();
-		empty_list();
-		$('.bar_plot').hide();
-
-
-		selection= $('.radio:checked').val();
-		
-		if(selection === "Entire") {
-			$.ajax({
-						data : {
-							name : $('#name').val(),
-							state : $('#state').val()
-							
-						},
-						type : 'POST',
-						url : '/backend/Entire'
-					})
-					.done(function(data){
-						
-						if(data.err) {
-		
-							$( "#failed" ).text(data.err).delay( 500 ).fadeIn( 400 );
-							$( "#sucess" ).hide();
-						}
-						else {
-		
-							$( '#list' ).show();
-							for(const district in data){
-								result=data[district];
-								create_li(result,district);
-							}
-							console.log(data)
-							$( "#sucess" ).text('Sucess').delay( 500 ).fadeIn( 400 ).delay(4000).fadeOut(400);
-							$( "#failed" ).hide();
-						}
-					});
-		}
-		else if( selection === "Entire_NE") {
-			//Ajax request for entire crime category for Entire North East
-			$.ajax({
-						data : {
-							name : $('#name').val()
-							
-						},
-						type : 'POST',
-						url : '/backend/Entire_NE'
-					})
-					.done(function(data){
-						
-						if(data.err) {
-		
-							$( "#failed" ).text(data.err).delay( 500 ).fadeIn( 400 );
-							$( "#sucess" ).hide();
-						}
-						else {
-		
-							$( '#list' ).show();
-							for(const state in data){
-								result=data[state];
-								create_li(result,state);
-							}
-							console.log(data)
-							$( "#sucess" ).text('Sucess').delay( 500 ).fadeIn( 400 ).delay(4000).fadeOut(400);
-							$( "#failed" ).hide();
-						}
-					});
-
-		}
-		else {
-			//Ajax request for a selected crime category for a selected state
-			$.ajax({
-						data : {
-							name : $('#name').val(),
-							crime: $('#crime').val(),
-							state : $('#state').val()
-							
-						},
-						type : 'POST',
-						url : '/backend/Individual'
-					})
-					.done(function(data){
-						
-						if(data.err) {
-		
-							$( "#failed" ).text(data.err).delay( 500 ).fadeIn( 400 );
-							$( "#sucess" ).hide();
-						}
-						else {
-		
-							$( '#list' ).show();
-							for(const district in data){
-								result=data[district];
-								create_li(result,district);
-							}
-							console.log(data)
-							$( "#sucess" ).text('Sucess').delay( 500 ).fadeIn( 400 ).delay(4000).fadeOut(400);
-							$( "#failed" ).hide();
-						}
-					});
-		}
-		ev.preventDefault();
-
-	})
-});
-
-function create_li(text,district){
-	const id = `#${text}`;
-	const li = document.createElement('li');
-	li.className=`${district}`;
-	const btn = document.createElement('button');
-	btn.className= "btn btn-success btn-sm ml-3 mb-3";
-	btn.innerText = "Analysis";
-	li.innerText = `${district}`;
-	$(id).append(li);
-	const dis_list_cls=`.${district}`;
-	$(dis_list_cls).append(btn);	
-}
-
-function empty_list(){
-	cluster_index_name.forEach(cluster=>{
-		const li_id = `#${cluster}`;
-		$(li_id).empty();
-	});
-}
 
 
 
 
+
+//BarPlot function
 function bar_plot(total_obj,top_obj,second_obj,top_crime,second_top_crime,district,state){
 
 
@@ -325,7 +292,7 @@ function bar_plot(total_obj,top_obj,second_obj,top_crime,second_top_crime,distri
       }
       str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
       str3 = "<span style = \"color:Tomato\">Total: </span><strong>" + total + "</strong><br/>";
-      return (str2.concat(str)).concat(str3);
+      return str2.concat(str);
     }
 
     function toggleDataSeries(e) {

@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Crime Prediction</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- Bold -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+
+<!--   Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<!--   Odometer css -->
+  <link rel="stylesheet" href="odometer-theme-default.css" />
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+	<section class="home">
+		<div class="main">
+			<div class="overlay">
+				<div id="container"></div>
+				<div class="Nav_container d-flex">
+					<ul class="nav_ul d-flex">
+							<li class="nav_menu nav_hover">
+								<a id="menu" onclick="menuClickHandler()" href="#">
+									<svg class="menu_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.621" height="46.874" viewBox="0 0 94.621 46.874">
+									<defs>
+									<style>
+									.cls-1 {
+									fill: none;
+									stroke: #aeaeae;
+									stroke-linecap: round;
+									stroke-width: 5px;
+									}
+
+									.cls-2 {
+									filter: url(#Line_17);
+
+
+									}
+
+									.cls-3 {
+									filter: url(#Line_16);
+									}
+
+									.cls-4 {
+									filter: url(#Line_15);
+
+									}
+
+
+									</style>
+									<filter id="Line_15" x="0" y="0" width="94.621" height="23" filterUnits="userSpaceOnUse">
+									<feOffset dx="3" dy="3" input="SourceAlpha"/>
+									<feGaussianBlur stdDeviation="3" result="blur"/>
+									<feFlood flood-opacity="0.161"/>
+									<feComposite operator="in" in2="blur"/>
+									<feComposite in="SourceGraphic"/>
+									</filter>
+									<filter id="Line_16" x="0" y="11.937" width="94.621" height="23" filterUnits="userSpaceOnUse">
+									<feOffset dx="3" dy="3" input="SourceAlpha"/>
+									<feGaussianBlur stdDeviation="3" result="blur-2"/>
+									<feFlood flood-opacity="0.161"/>
+									<feComposite operator="in" in2="blur-2"/>
+									<feComposite in="SourceGraphic"/>
+									</filter>
+									<filter id="Line_17" x="0" y="23.874" width="94.621" height="23" filterUnits="userSpaceOnUse">
+									<feOffset dx="3" dy="3" input="SourceAlpha"/>
+									<feGaussianBlur stdDeviation="3" result="blur-3"/>
+									<feFlood flood-opacity="0.161"/>
+									<feComposite operator="in" in2="blur-3"/>
+									<feComposite in="SourceGraphic"/>
+									</filter>
+									</defs>
+									<g id="menu_bar" data-name="menu bar" transform="translate(8.5 8.5)">
+									<g class="cls-4" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+									<line id="Line_15-2" 
+									data-name="Line 15" class="cls-1" x2="71.621" transform="translate(8.5 8.5)"/>
+									</g>
+									<g class="cls-3" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+									<line id="Line_16-2" data-name="Line 16" class="cls-1" x2="71.621" transform="translate(8.5 20.44)"/>
+									</g>
+									<g class="cls-2" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+									<line id="Line_17-2" data-name="Line 17" class="cls-1" x2="71.621" transform="translate(8.5 32.37)"/>
+									</g>
+									</g>
+									</svg>
+								</a>
+						</li>
+						<li class="nav_icon">
+							<a href="#"><img src="logo.svg" class="logo"></a>
+						</li>
+					</ul>
+					<div class="nav_btn">
+						<a href="analyz.html" class="nav-item btn btn-light analyse_btn" >ANALYSE</a>
+					</div>
+					
+				</div>
+
+
+
+				<div class="home_des_container mt-4 pt-5">
+					<div class="title_container">
+						<div class="title_author_txt mb-2">
+							<span>Marcus Aurelius </span>
+
+						</div>
+						<div class="d-inline-block ml-2 title_line">
+							<svg class="svg_ln" height="5" width="64"><line x1="0" y1="0" x2="64" y2="0" style="stroke:rgb(255,255,255);stroke-width:4" />
+							</svg>
+						</div>
+
+						<div class="ml-2 title_txt">
+							<p>Poverty</p>
+							<p>is the mother of crimes</p>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="arrow_container" onclick="upSlider()">
+					<img src="arrow.svg" class="arrow_svg">
+				</div>
+			</div>  <!-- Overlay -->
+		</div>      <!-- Main -->
+
+		<!-- Light Box first Page -->
+
+
+		<div class="light_box">
+			<div class="overlay_menu_container">
+				<a class="overlay_nav-link overlay_nav_hover" onclick="OverlaymenuClickHandler()" href="#">
+					<svg class="menu_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.621" height="46.874" viewBox="0 0 94.621 46.874">
+					<defs>
+
+					<style>
+					.cls-1 {
+					fill: none;
+					stroke: #aeaeae;
+					stroke-linecap: round;
+					stroke-width: 5px;
+					}
+
+					.cls-2 {
+					filter: url(#Line_17);
+
+
+					}
+
+					.cls-3 {
+					filter: url(#Line_16);
+					}
+
+					.cls-4 {
+					filter: url(#Line_15);
+
+					}
+
+
+					</style>
+					<filter id="Line_15" x="0" y="0" width="94.621" height="23" filterUnits="userSpaceOnUse">
+					<feOffset dx="3" dy="3" input="SourceAlpha"/>
+					<feGaussianBlur stdDeviation="3" result="blur"/>
+					<feFlood flood-opacity="0.161"/>
+					<feComposite operator="in" in2="blur"/>
+					<feComposite in="SourceGraphic"/>
+					</filter>
+					<filter id="Line_16" x="0" y="11.937" width="94.621" height="23" filterUnits="userSpaceOnUse">
+					<feOffset dx="3" dy="3" input="SourceAlpha"/>
+					<feGaussianBlur stdDeviation="3" result="blur-2"/>
+					<feFlood flood-opacity="0.161"/>
+					<feComposite operator="in" in2="blur-2"/>
+					<feComposite in="SourceGraphic"/>
+					</filter>
+					<filter id="Line_17" x="0" y="23.874" width="94.621" height="23" filterUnits="userSpaceOnUse">
+					<feOffset dx="3" dy="3" input="SourceAlpha"/>
+					<feGaussianBlur stdDeviation="3" result="blur-3"/>
+					<feFlood flood-opacity="0.161"/>
+					<feComposite operator="in" in2="blur-3"/>
+					<feComposite in="SourceGraphic"/>
+					</filter>
+					</defs>
+					<g id="menu_bar" data-name="menu bar" transform="translate(8.5 8.5)">
+					<g class="cls-4" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+					<line id="Line_15-2" 
+					data-name="Line 15" class="cls-1" x2="71.621" transform="translate(8.5 8.5)"/>
+					</g>
+					<g class="cls-3" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+					<line id="Line_16-2" data-name="Line 16" class="cls-1" x2="71.621" transform="translate(8.5 20.44)"/>
+					</g>
+					<g class="cls-2" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+					<line id="Line_17-2" data-name="Line 17" class="cls-1" x2="71.621" transform="translate(8.5 32.37)"/>
+					</g>
+					</g>
+					</svg>
+				</a>
+			</div>
+			<div class="overlay_circle text-center" style="display: none;">
+				<p class="about_link" onclick="AboutSliderHome()">About Our Project</p><br><br>
+				<p class="system_link" onclick="systemSliderHome()">System Capability</p>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Assam Page  -->
+
+
+	<section class="assam">
+		<div class="main">
+			<div class="overlay">
+				<div class="Nav_container d-flex">
+					<ul class="nav_ul d-flex">
+							<li class="nav_menu nav_hover">
+								<a id="menu" onclick="menuClickHandler()" href="#">
+									<svg class="menu_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.621" height="46.874" viewBox="0 0 94.621 46.874">
+									<defs>
+									<style>
+									.cls-1 {
+									fill: none;
+									stroke: #aeaeae;
+									stroke-linecap: round;
+									stroke-width: 5px;
+									}
+
+									.cls-2 {
+									filter: url(#Line_17);
+
+
+									}
+
+									.cls-3 {
+									filter: url(#Line_16);
+									}
+
+									.cls-4 {
+									filter: url(#Line_15);
+
+									}
+
+
+									</style>
+									<filter id="Line_15" x="0" y="0" width="94.621" height="23" filterUnits="userSpaceOnUse">
+									<feOffset dx="3" dy="3" input="SourceAlpha"/>
+									<feGaussianBlur stdDeviation="3" result="blur"/>
+									<feFlood flood-opacity="0.161"/>
+									<feComposite operator="in" in2="blur"/>
+									<feComposite in="SourceGraphic"/>
+									</filter>
+									<filter id="Line_16" x="0" y="11.937" width="94.621" height="23" filterUnits="userSpaceOnUse">
+									<feOffset dx="3" dy="3" input="SourceAlpha"/>
+									<feGaussianBlur stdDeviation="3" result="blur-2"/>
+									<feFlood flood-opacity="0.161"/>
+									<feComposite operator="in" in2="blur-2"/>
+									<feComposite in="SourceGraphic"/>
+									</filter>
+									<filter id="Line_17" x="0" y="23.874" width="94.621" height="23" filterUnits="userSpaceOnUse">
+									<feOffset dx="3" dy="3" input="SourceAlpha"/>
+									<feGaussianBlur stdDeviation="3" result="blur-3"/>
+									<feFlood flood-opacity="0.161"/>
+									<feComposite operator="in" in2="blur-3"/>
+									<feComposite in="SourceGraphic"/>
+									</filter>
+									</defs>
+									<g id="menu_bar" data-name="menu bar" transform="translate(8.5 8.5)">
+									<g class="cls-4" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+									<line id="Line_15-2" 
+									data-name="Line 15" class="cls-1" x2="71.621" transform="translate(8.5 8.5)"/>
+									</g>
+									<g class="cls-3" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+									<line id="Line_16-2" data-name="Line 16" class="cls-1" x2="71.621" transform="translate(8.5 20.44)"/>
+									</g>
+									<g class="cls-2" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+									<line id="Line_17-2" data-name="Line 17" class="cls-1" x2="71.621" transform="translate(8.5 32.37)"/>
+									</g>
+									</g>
+									</svg>
+								</a>
+						</li>
+						<li class="nav_icon">
+							<a onclick="AssamtoHome()"><img src="logo.svg" class="logo"></a>
+						</li>
+					</ul>
+					<div class="nav_btn">
+						<a href="analyz.html" class="nav-item btn btn-light analyse_btn" >ANALYSE</a>
+					</div>
+					
+				</div>
+
+
+
+				
+
+				<!-- Body -->
+				<div class="assam_title text-center">
+					<p class="assam_name">ASSAM</p>
+					<p class="assam_name_crime">Rape in 2009</p>
+				</div>
+				<div class="assam_count_container d-flex justify-content-center">
+
+
+					<div id="odometer" class="odometer">0</div>
+					<div id="odometer2" class="odometer">0</div>	
+					<div id="odometer3" class="odometer">0</div>				
+				</div>
+
+
+
+
+
+
+				<div class="arrow_container" onclick="downSlider()">
+					<img src="arrow.svg" class="arrow_svg_up">
+				</div>
+			</div>  <!-- Overlay -->
+		</div>      <!-- Main -->
+		<!-- Light Box first Page -->
+
+
+		<div class="light_box">
+			<div class="overlay_menu_container">
+				<a class="overlay_nav-link overlay_nav_hover" onclick="OverlaymenuClickHandler()" href="#">
+					<svg class="menu_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.621" height="46.874" viewBox="0 0 94.621 46.874">
+					<defs>
+
+					<style>
+					.cls-1 {
+					fill: none;
+					stroke: #aeaeae;
+					stroke-linecap: round;
+					stroke-width: 5px;
+					}
+
+					.cls-2 {
+					filter: url(#Line_17);
+
+
+					}
+
+					.cls-3 {
+					filter: url(#Line_16);
+					}
+
+					.cls-4 {
+					filter: url(#Line_15);
+
+					}
+
+
+					</style>
+					<filter id="Line_15" x="0" y="0" width="94.621" height="23" filterUnits="userSpaceOnUse">
+					<feOffset dx="3" dy="3" input="SourceAlpha"/>
+					<feGaussianBlur stdDeviation="3" result="blur"/>
+					<feFlood flood-opacity="0.161"/>
+					<feComposite operator="in" in2="blur"/>
+					<feComposite in="SourceGraphic"/>
+					</filter>
+					<filter id="Line_16" x="0" y="11.937" width="94.621" height="23" filterUnits="userSpaceOnUse">
+					<feOffset dx="3" dy="3" input="SourceAlpha"/>
+					<feGaussianBlur stdDeviation="3" result="blur-2"/>
+					<feFlood flood-opacity="0.161"/>
+					<feComposite operator="in" in2="blur-2"/>
+					<feComposite in="SourceGraphic"/>
+					</filter>
+					<filter id="Line_17" x="0" y="23.874" width="94.621" height="23" filterUnits="userSpaceOnUse">
+					<feOffset dx="3" dy="3" input="SourceAlpha"/>
+					<feGaussianBlur stdDeviation="3" result="blur-3"/>
+					<feFlood flood-opacity="0.161"/>
+					<feComposite operator="in" in2="blur-3"/>
+					<feComposite in="SourceGraphic"/>
+					</filter>
+					</defs>
+					<g id="menu_bar" data-name="menu bar" transform="translate(8.5 8.5)">
+					<g class="cls-4" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+					<line id="Line_15-2" 
+					data-name="Line 15" class="cls-1" x2="71.621" transform="translate(8.5 8.5)"/>
+					</g>
+					<g class="cls-3" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+					<line id="Line_16-2" data-name="Line 16" class="cls-1" x2="71.621" transform="translate(8.5 20.44)"/>
+					</g>
+					<g class="cls-2" transform="matrix(1, 0, 0, 1, -8.5, -8.5)">
+					<line id="Line_17-2" data-name="Line 17" class="cls-1" x2="71.621" transform="translate(8.5 32.37)"/>
+					</g>
+					</g>
+					</svg>
+				</a>
+			</div>
+			<div class="overlay_circle text-center" style="display: none;">
+				<p class="about_link" onclick="AboutSliderAssam()">About Our Project</p><br><br>
+				<p class="system_link" onclick="systemSliderAssam()">System Capability</p>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- About Page  -->
+
+
+	<section class="about">
+		<div class="Nav_container d-flex">
+					<ul class="nav_ul d-flex">
+							
+						<li class="nav_icon">
+							<a onclick="AssamtoHome()"><img src="logo.svg" class="logo"></a>
+						</li>
+					</ul>
+					<div class="nav_btn">
+						<a href="analyz.html" class="nav-item btn btn-light analyse_btn" >ANALYSE</a>
+					</div>
+					
+				</div>
+
+
+
+		
+
+		<!-- Body -->
+		<div class="About_title text-center">
+			<p class="About_name">ABOUT OUR SYSTEM</p>
+			<p class="About_des">Crime rate prediction is a systematic approach for identifying and analysing patterns and rate in crime. To be better prepared to respond to criminal activity, it is important to understand patterns in crime.</p>
+			<p class="About_des">The objective is to analysis of crime data from all the states of north-east India and their districts, scraped from publicly available website data.gov.in.</p>
+		</div>
+
+
+
+
+
+
+		<div class="back_container" onclick="AboutPageBackSlide()">
+			<img src="back.svg" class="back_svg">
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- System Page  -->
+
+
+	<section class="system">
+		<div class="Nav_container d-flex">
+					<ul class="nav_ul d-flex">
+							
+						<li class="nav_icon">
+							<a onclick="AssamtoHome()"><img src="logo.svg" class="logo"></a>
+						</li>
+					</ul>
+					<div class="nav_btn">
+						<a href="analyz.html" class="nav-item btn btn-light analyse_btn" >ANALYSE</a>
+					</div>
+					
+				</div>
+
+
+
+		
+
+		<!-- Body -->
+		<div class="system_title text-center">
+			<p class="system_name">SYSTEM CAPABILITY</p>
+			<p class="system_des">The system is able to predict regions which have high rate of crime occurrence, analyse the trend of each on yeary basis, visualize the crime prone areas using map or barplots and further analysis can be carried out.</p>
+		</div>
+
+
+
+
+
+
+		<div class="back_container" onclick="SystemPageBackSlide()">
+			<img src="back.svg" class="back_svg">
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	<script src="jquery.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
+	<script type="text/javascript" src="odometer.js"></script> 	
+	<script src="main.js"></script>
+</body>
+</html>
