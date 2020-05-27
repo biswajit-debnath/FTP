@@ -8,7 +8,7 @@ const Url_for_diff_selection = { "NE_Total":`${host}/backend/Entire_NE`,
 let current_url;
 let api_data = {};
 let NE_selected = false;
-$(document).ready(function(){
+$(window).on("load", function() {
 	$("body").show();
 
 $(".analyse_form_btn").on('click',function(e){
