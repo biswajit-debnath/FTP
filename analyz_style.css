@@ -1,4 +1,4 @@
-
+ 
 body {
   position: relative;
   overflow: unset !important;
@@ -265,7 +265,7 @@ input:checked + .slider:before {
 
 
 
-/*Content blockes*/
+/*Content blocks*/
 .block_header {
   margin-left: 1rem;
   margin-bottom: 1rem;
@@ -317,4 +317,72 @@ hr {
 
 .bar_plot {
   position: relative;
+}
+
+/*Loading*/
+.loading_container {
+  transition: all 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1.9rem;
+  margin-top: -6rem;
+}
+.loading_container p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+
+}
+
+.loading_img {
+  width:4rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Visualise*/
+.visualize_content {
+  padding-top: 4rem;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  background: url("visualization.jpg") repeat-y center / cover;
 }

@@ -1,4 +1,4 @@
-const host = "http://3.21.34.165:8082/";
+const host = "http://3.21.34.165:8082/"; 
 
 const Url_for_diff_selection = { "NE_Total":`${host}/backend/Entire_NE`,
 							  "State_Total":`${host}/backend/Entire`,
@@ -12,6 +12,8 @@ let NE_selected = false;
 
 $(".analyse_form_btn").on('click',function(e){
 	e.preventDefault();
+	//Displaying the loading container while data is arriving from the backend
+	$('.loading_container').show();
 	//Checking which one of the selction is selected
 	const selection = $('.checkbox:checked').val();
 	
@@ -61,6 +63,13 @@ $(".analyse_form_btn").on('click',function(e){
 					})
 					.done(function(data){
 						document.querySelector(".analyz_content").style.display = "block";
+						//Hiding the loading container
+						$('.loading_container').hide();
+
+						//Auto scrool to analyz_content
+						$('html, body').animate({
+					         scrollTop: $(".analyz_content").offset().top
+					     }, 1000);
 						create_insert_elements(data);
 					})
 
