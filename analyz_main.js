@@ -1,4 +1,4 @@
-const host = "http://3.21.34.165:8082/"; 
+const host = "http://3.21.34.165:8082"; 
 
 const Url_for_diff_selection = { "NE_Total":`${host}/backend/Entire_NE`,
 							  "State_Total":`${host}/backend/Entire`,
