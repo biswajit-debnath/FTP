@@ -10,25 +10,11 @@ let api_data = {};
 let NE_selected = false;
 let err_ocuured=false;
 
-// function getBgUrl(el) {
-//     var bg = "";
-//     if (el.currentStyle) { // IE
-//         bg = el.currentStyle.backgroundImage;
-//     } else if (document.defaultView && document.defaultView.getComputedStyle) { // Firefox
-//         bg = document.defaultView.getComputedStyle(el, "").backgroundImage;
-//     } else { // try and get inline style
-//         bg = el.style.backgroundImage;
-//     }
-//     return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
-// }
 
-// var image = document.createElement('img');
-// image.src = getBgUrl(document.getElementById('.analyz_container_title'));
-// image.onload = function () {
-//     $("body").show();
-// };
-
-
+const LoadingScreen=()=>{
+	$(".loading_screen").hide();
+	$(".main_content").show();
+}
 
 
 $(".analyse_form_btn").on('click',function(e){
@@ -124,6 +110,14 @@ $(".analyse_form_btn").on('click',function(e){
 						         scrollTop: $(".analyz_content").offset().top
 						     }, 1000);
 							create_insert_elements(data);
+						})
+						.fail(function(jqXHR, textStatus, error){
+
+							$('.loading_container').hide();
+				 			$(".alert").addClass("show");
+				 			$(".alert_text").text("Some error occured at backend");
+				 			console.log(error);
+
 						});
 		}
   	}
@@ -252,7 +246,15 @@ const Create_li=(data,cluster)=>{
 				district_name=target_district.toLowerCase();
 				bar_plot(total_data,top_data,second_top_data,top_crime,second_top_crime,district_name,State_selected);
 
-			});
+			})
+			.fail(function(jqXHR, textStatus, error){
+
+							$('.loading_container_bar_plot').hide();
+				 			$(".alert").addClass("show");
+				 			$(".alert_text").text("Some error occured at backend");
+				 			console.log(error);
+
+						});
 		}
 
 		else {
@@ -307,7 +309,16 @@ const Create_li=(data,cluster)=>{
 				district_name= State_selected;
 				bar_plot(total_data,top_data,second_top_data,top_crime,second_top_crime,district_name,State_selected);
 
-			});
+			})
+			.fail(function(jqXHR, textStatus, error){
+
+							$('.loading_container_bar_plot').hide();
+				 			$(".alert").addClass("show");
+				 			$(".alert_text").text("Some error occured at backend");
+				 			console.log(error);
+
+						});
+
 		}
 	  }
 	});

@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   
 
+<link rel="stylesheet" type="text/css" href="loading-bar.css"/>
+<script type="text/javascript" src="loading-bar.js"></script>
 
 
   <link rel="stylesheet" href="style.css">
@@ -23,7 +25,14 @@
 
 </head>
 
-<body>
+<body onload="LoadingScreen()">
+
+  
+    <div class="loading_screen" data-text="Loading">
+      <img src="start_loader.gif" class="loading_screen_img">
+    </div>
+  
+<div class="main_content">
 
   <!-- Analyz Page  -->
 
@@ -168,8 +177,7 @@
 
 
 
-
-
+</div>
 
 
 
@@ -302,12 +310,14 @@
   </section>
 
 
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  
+
+</body>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script src="jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper-base.min.js" integrity="sha256-aqwvEth5WZ22X5/RdHwc5uOPGc6sX+cVbSYEaLue7OA=" crossorigin="anonymous"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.js" integrity="sha256-Mrt8uZuy/7W0bv7thFokEzbrJ8yVm+mGXG4XYp3DbjM=" crossorigin="anonymous"></script>
   <script src="analyz_main.js"></script>
-
-</body>
 </html>

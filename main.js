@@ -1,3 +1,10 @@
+const LoadingScreen=()=>{
+	$(".loading_screen").hide();
+	$(".main_content").show();
+}
+
+
+
 let width = window.innerWidth;
 		let height = window.innerHeight;
 		let rad1 = Math.floor((0.65*width)/2); 
