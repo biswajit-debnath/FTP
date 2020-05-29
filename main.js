@@ -253,11 +253,13 @@ let width = window.innerWidth;
 			circle_text_id4.animate({'x':width,'fill-opacity':0},animate_sec,"backOut")
 			circle_text4.animate({'x':width,'fill-opacity':0},animate_sec,"backOut")
 		}  
-		setTimeout(animateball1,1000);
-		setTimeout(animateball2, 4000);
+		
 
 
-
+$( document ).ready(function() {
+	setTimeout(animateball1,1000);
+	setTimeout(animateball2, 4000);
+});
 
 
 function init_small_circle(){
