@@ -1,7 +1,4 @@
-const LoadingScreen=()=>{
-	$(".loading_screen").hide();
-	$(".main_content").show();
-}
+
 
 
 
@@ -255,11 +252,13 @@ let width = window.innerWidth;
 		}  
 		
 
-
-$( document ).ready(function() {
+const LoadingScreen=()=>{
+	$(".loading_screen").hide();
+	$(".main_content").show();
 	setTimeout(animateball1,1000);
 	setTimeout(animateball2, 4000);
-});
+}
+
 
 
 function init_small_circle(){
