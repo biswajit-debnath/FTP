@@ -76,7 +76,7 @@ button.close {
     /*overflow:hidden;*/
     min-height: 100vh;
     margin: 0;
-    background: url("visualization.jpg") no-repeat center / cover;
+/*    background: url("visualization.jpg") no-repeat center / cover;*/
 
 
     /*position: absolute;
