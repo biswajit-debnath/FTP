@@ -6,7 +6,7 @@ const Url_for_diff_selection = { "NE_Total":`${host}/backend/Entire_NE`,
 							 	"NE_Single":`${host}/backend/Entire_NE/Individual` };
 
 let current_url;
-let api_data = {};
+let api_data = {}; 
 let NE_selected = false;
 let err_ocuured=false;
 
@@ -132,8 +132,6 @@ $(".analyse_form_btn").on('click',function(e){
 
 
 	
-
-
 
 
 const  create_insert_elements = data =>{
