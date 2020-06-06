@@ -101,10 +101,17 @@ $(".analyse_form_btn").on('click',function(e){
 							url : current_url
 						})
 						.done(function(data){
-							if(!NE_selected)
+							const changed_data=split_data(api_data["crime"]);
+							if(!NE_selected){
+								$(".content_header h2").text("District wise Analysis");
+								$(".content_header_crime").text(changed_data);
 								document.querySelector(".visualize_link").href = `visualize/${api_data["state"]}${api_data["crime"]}.html`;
-							else
+							}
+							else{
+								$(".content_header h2").text("State wise Analysis");
+								$(".content_header_crime").text(changed_data);
 								document.querySelector(".visualize_link").href = `visualize/NE${api_data["crime"]}.html`; 
+							}
 
 
 							document.querySelector(".analyz_content").style.display = "block";
@@ -153,10 +160,7 @@ const  create_insert_elements = data =>{
 
 
 const Create_li=(data,cluster)=>{
-	let changed_data=data.toLowerCase();
-	//Removing the _ and replacing with space
-	let data_temp= changed_data.split("_");
-	if(data_temp[1]) changed_data=data_temp[0]+" "+data_temp[1];
+	const changed_data=split_data(data);
 
 	return $(`<li class="collapse_list_item d-flex justify-content-lg-between mb-1 mt-1">
                               <p class="text-capitalize">${changed_data}</p>
@@ -170,6 +174,15 @@ const Create_li=(data,cluster)=>{
 
 
 
+
+const split_data=(data)=>{
+	let changed_data=data.toLowerCase();
+							//Removing the _ and replacing with space
+							let data_temp= changed_data.split("_");
+							if(data_temp[1]) changed_data=data_temp[0]+" "+data_temp[1];
+
+							return changed_data;
+}
 
 
 
