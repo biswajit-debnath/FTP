@@ -101,6 +101,9 @@ $(".analyse_form_btn").on('click',function(e){
 							url : current_url
 						})
 						.done(function(data){
+							document.querySelector(".visualize_link").href = `visualize/${api_data["state"]}${api_data["crime"]}.html`;
+
+
 							document.querySelector(".analyz_content").style.display = "block";
 							//Hiding the loading container
 							$('.loading_container').hide();
