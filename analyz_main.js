@@ -101,7 +101,10 @@ $(".analyse_form_btn").on('click',function(e){
 							url : current_url
 						})
 						.done(function(data){
-							document.querySelector(".visualize_link").href = `visualize/${api_data["state"]}${api_data["crime"]}.html`;
+							if(!NE_selected)
+								document.querySelector(".visualize_link").href = `visualize/${api_data["state"]}${api_data["crime"]}.html`;
+							else
+								document.querySelector(".visualize_link").href = `visualize/NE${api_data["crime"]}.html`; 
 
 
 							document.querySelector(".analyz_content").style.display = "block";
